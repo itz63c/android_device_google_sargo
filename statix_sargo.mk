@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Include DU common configuration
-include vendor/du/config/common_full_phone.mk
+#Inherit some common statix stuff
+$(call inherit-product, vendor/statix/config/common.mk)
+$(call inherit-product, vendor/statix/config/gsm.mk)
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/google/bonito/aosp_sargo.mk)
@@ -22,7 +23,7 @@ $(call inherit-product, device/google/bonito/aosp_sargo.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
-PRODUCT_NAME := du_sargo
+PRODUCT_NAME := statix_sargo
 PRODUCT_DEVICE := sargo
 PRODUCT_BRAND := Google
 PRODUCT_MODEL := Pixel 3a
@@ -38,7 +39,4 @@ BUILD_FINGERPRINT := "google/sargo/sargo:10/QQ1A.191205.011/6009058:user/release
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.fingerprint=google/sargo/sargo:10/QQ1A.191205.011/6009058:user/release-keys
 
-BOARD_PREBUILT_VENDORIMAGE := vendor/images/sargo/vendor.img
-
 $(call inherit-product-if-exists, vendor/google/sargo/sargo-vendor.mk)
-$(call inherit-product-if-exists, vendor/pixelgapps/pixel-gapps.mk)
